@@ -93,54 +93,62 @@ I first calculated the percentage of missing values for each feature to understa
 
 In this step, I removed or dropped features that were either unnecessary or did not add significant value to the model.
 
-The **'MiscVal'** column was dropped as it mostly contained zero values, with only 3 observations having non-zero values. Due to its lack of variability, this column did not provide meaningful information and could potentially introduce noise into the analysis.
+- The **'MiscVal'** column was dropped as it mostly contained zero values, with only 3 observations having non-zero values. Due to its lack of variability, this column did not provide meaningful information and could potentially introduce noise into the analysis.
 
-From the correlation matrix, I identified **'GarageArea', '1stFlrSF', 'TotRmsAbvGrd'**
+- From the correlation matrix, I identified **'GarageArea', '1stFlrSF', 'TotRmsAbvGrd'**
 variables that were highly correlated with others that were more valuable to the model. Instead of keeping these redundant features, I retained the more relevant variables and dropped the ones that were less useful.
 
-The **'Id'** column was removed because it was merely an identifier and did not contribute any predictive value for the model.
+- The **'Id'** column was removed because it was merely an identifier and did not contribute any predictive value for the model.
 
 # Week 3 - Feature Selection and Feature Engineering
 ## Tasks
-New features were created to enhance model performance
+**1. Additional features were engineered to improve model performance.**
 
 **Total Square Footage Features:**
-- TotalSF
-- TotalPorchSF
-- TotalOutdoorSF
+- TotalSF = ['TotalBsmtSF'] + ['1stFlrSF'] + ['2ndFlrSF']
+- TotalPorchSF = ['OpenPorchSF'] + ['EnclosedPorch'] + ['3SsnPorch'] + ['ScreenPorch']
+- TotalOutdoorSF = ['OpenPorchSF'] + ['EnclosedPorch'] + ['WoodDeckSF'] + ['3SsnPorch'] + ['ScreenPorch']
 
-**TotalBathrooms:** Total number of bathrooms, weighting half-baths as 0.
+**TotalBathrooms:** Total number of bathrooms
+
+- TotalBathrooms = ['FullBath'] + 0.5 * ['HalfBath'] + ['BsmtFullBath'] + 0.5 * ['BsmtHalfBath']
 
 **Garage Features:**
-- GarageSize: 
-- GarageAge:
+- GarageSize = ['GarageCars'] * ['GarageArea']
+- GarageAge = ['YrSold'] -['GarageYrBlt']
 
 **Age of the House:**
-- HouseAge:
-- RemodelAge:
+- HouseAge = ['YrSold'] - ['YearBuilt']
+- RemodelAge = ['YrSold'] -['YearRemodAdd']
 
 **TotalRooms:** Sum of total rooms above ground and bedrooms.
+- TotalRooms = ['TotRmsAbvGrd'] + ['BedroomAbvGr']
 
 **Basement Presence**
-- HasBasement 
+- HasBasement: Binary flag indicating the presence of a basement
 
 **Garage Presence**
-- HasGarage:
+- HasGarage: Binary flag indicating the presence of a garage
 
 **Pool Presence**
-- HasPool:
+- HasPool: Binary flag indicating the presence of a pool
 
 **Fireplace Presence**
-- HasFireplace:
+- HasFireplace: Binary flag indicating the presence of a fireplace
 
 **2nd Floor Presence**
-- Has2ndfloor:
+- Has2ndfloor: Binary flag indicating the presence of 2nd floor
 
-**Feature Scaling and Encoding**
+**2. Feature Scaling and Encoding**
 
 RobustScaler was applied to numerical features to handle outliers
 One-Hot Encoding was applied to categorical features
 
-**Feature Selection Using Random Forest**
+**3. Feature Selection Using Random Forest**
 
-A Random Forest Regressor was trained to determine feature importance
+A Random Forest Regressor was trained to determine feature importance, and the top features were selected based on their contribution to predicting house prices.
+
+**4. Feature Selection Using Lasso Regression**
+
+A Lasso Regression model was applied to shrink less important feature coefficients to zero, effectively selecting the most relevant predictors.
+
