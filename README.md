@@ -105,39 +105,52 @@ variables that were highly correlated with others that were more valuable to the
 **1. Additional features were engineered to improve model performance.**
 
 **Total Square Footage Features:**
-- TotalSF = ['TotalBsmtSF'] + ['1stFlrSF'] + ['2ndFlrSF']
-- TotalPorchSF = ['OpenPorchSF'] + ['EnclosedPorch'] + ['3SsnPorch'] + ['ScreenPorch']
-- TotalOutdoorSF = ['OpenPorchSF'] + ['EnclosedPorch'] + ['WoodDeckSF'] + ['3SsnPorch'] + ['ScreenPorch']
+    
+    TotalSF = ['TotalBsmtSF'] + ['1stFlrSF'] + ['2ndFlrSF']
+    
+    TotalPorchSF = ['OpenPorchSF'] + ['EnclosedPorch'] + ['3SsnPorch'] + ['ScreenPorch']
+    
+    TotalOutdoorSF = ['OpenPorchSF'] + ['EnclosedPorch'] + ['WoodDeckSF'] + ['3SsnPorch'] + ['ScreenPorch']
 
 **TotalBathrooms:** Total number of bathrooms
 
-- TotalBathrooms = ['FullBath'] + 0.5 * ['HalfBath'] + ['BsmtFullBath'] + 0.5 * ['BsmtHalfBath']
+    TotalBathrooms = ['FullBath'] + 0.5 * ['HalfBath'] + ['BsmtFullBath'] + 0.5 * ['BsmtHalfBath']
 
 **Garage Features:**
-- GarageSize = ['GarageCars'] * ['GarageArea']
-- GarageAge = ['YrSold'] -['GarageYrBlt']
+    
+    GarageSize = ['GarageCars'] * ['GarageArea']
+    
+    GarageAge = ['YrSold'] -['GarageYrBlt']
 
 **Age of the House:**
-- HouseAge = ['YrSold'] - ['YearBuilt']
-- RemodelAge = ['YrSold'] -['YearRemodAdd']
+    
+    HouseAge = ['YrSold'] - ['YearBuilt']
+    
+    RemodelAge = ['YrSold'] -['YearRemodAdd']
 
 **TotalRooms:** Sum of total rooms above ground and bedrooms.
-- TotalRooms = ['TotRmsAbvGrd'] + ['BedroomAbvGr']
+    
+    TotalRooms = ['TotRmsAbvGrd'] + ['BedroomAbvGr']
 
 **Basement Presence**
-- HasBasement: Binary flag indicating the presence of a basement
+    
+    HasBasement: Binary flag indicating the presence of a basement
 
 **Garage Presence**
-- HasGarage: Binary flag indicating the presence of a garage
+    
+    HasGarage: Binary flag indicating the presence of a garage
 
 **Pool Presence**
-- HasPool: Binary flag indicating the presence of a pool
+    
+    HasPool: Binary flag indicating the presence of a pool
 
 **Fireplace Presence**
-- HasFireplace: Binary flag indicating the presence of a fireplace
+    
+    HasFireplace: Binary flag indicating the presence of a fireplace
 
 **2nd Floor Presence**
-- Has2ndfloor: Binary flag indicating the presence of 2nd floor
+    
+    Has2ndfloor: Binary flag indicating the presence of 2nd floor
 
 **2. Feature Scaling and Encoding**
 
@@ -148,7 +161,147 @@ One-Hot Encoding was applied to categorical features
 
 A Random Forest Regressor was trained to determine feature importance, and the top features were selected based on their contribution to predicting house prices.
 
-**4. Feature Selection Using Lasso Regression**
+**4. Feature Selection Using Lasso Regression (Optional)**
 
 A Lasso Regression model was applied to shrink less important feature coefficients to zero, effectively selecting the most relevant predictors.
 
+# Week 4 - Supervised Model Building
+## Tasks
+
+**1. Model Training**"
+
+Each model was initialized and trained on the dataset:
+
+A `Random Forest Regressor` was initialized with 500 estimators and trained.
+
+A `Gradient Boosting Regressor` was initialized and trained.
+
+A `XGBoost Regressor` was trained on the dataset.
+
+A `Decision Tree Regressor` was trained on the dataset.
+
+A `SVM Regressor` was trained on the dataset.
+
+**2. Model Predictions**
+
+Predictions were generated on the training set for each model.
+
+**3. Model Evaluation**
+
+The models were evaluated using Mean Squared Error (MSE) and R² Score, including cross-validation scores.
+
+**1. Random Forest Regressor**
+
+    Training Set Evaluation:
+
+    MSE: 0.0027
+
+    R² Score: 0.9830
+
+    Adjusted R² Score: 0.9826
+
+    **Cross-Validation:**
+
+    Mean MSE: 0.0205
+
+    R² Score: 0.8715
+
+    MSE for each fold: [0.0183, 0.0243, 0.0206, 0.0165, 0.0227]
+
+    R² for each fold: [0.8775, 0.8654, 0.8770, 0.8858, 0.8518]
+
+**2. Gradient Boosting Regressor**
+
+    Training Set Evaluation:
+
+    MSE: 0.0018
+
+    R² Score: 0.9887
+
+    Cross-Validation:
+
+    Mean MSE: 0.0200
+
+    R² Score: 0.8875
+
+    MSE for each fold: [0.0167, 0.0185, 0.0186, 0.0147, 0.0208]
+
+    R² for each fold: [0.8879, 0.8976, 0.8893, 0.8985, 0.8643]
+
+**3. XGBoost Regressor**
+
+    Training Set Evaluation:
+
+    MSE: 0.0024
+
+    R² Score: 0.9851
+
+    Cross-Validation:
+
+    Mean MSE: 0.0200
+
+    R² Score: 0.8856
+
+    MSE for each fold: [0.0153, 0.0210, 0.0187, 0.0136, 0.0227]
+
+    R² for each fold: [0.8974, 0.8840, 0.8888, 0.9063, 0.8515]
+
+**4. Decision Tree Regressor**
+
+    Training Set Evaluation:
+
+    MSE: 0.0237
+
+    R² Score: 0.8511
+
+    Cross-Validation:
+
+    Mean MSE: 0.0375
+
+    R² Score: 0.7639
+
+    MSE for each fold: [0.0348, 0.0456, 0.0339, 0.0370, 0.0364]
+
+    R² for each fold: [0.7672, 0.7476, 0.7980, 0.7443, 0.7622]
+
+**5. SVM Regressor**
+
+    Training Set Evaluation:
+
+    MSE: 0.0058
+
+    R² Score: 0.9633
+
+    Cross-Validation:
+
+    Mean MSE: 0.0300
+
+    R² Score: 0.8311
+
+    MSE for each fold: [0.0241, 0.0367, 0.0261, 0.0230, 0.0253]
+
+    R² for each fold: [0.8384, 0.7969, 0.8445, 0.8413, 0.8346]
+
+**Results:**
+
+Among all models, the **Gradient Boosting Regressor** achieved the best performance, with an **R² Score of 0.9887** on the training set and a **cross-validated R² Score of 0.8875**, indicating strong generalization. The **XGBoost Regressor** followed closely, achieving a training **R² of 0.9851** and a **cross-validated R² of 0.8856**, making it another highly effective model.
+
+The **Random Forest Regressor** also performed well, with a **training R² of 0.9830** and a **cross-validated R² of 0.8715**, but it showed **slight overfitting**. The **SVM Regressor** achieved a **training R² of 0.9633** and a **cross-validated R² of 0.8311**, performing decently but lagging behind the boosting models.
+
+The **Decision Tree Regressor** had the lowest accuracy, with an **R² of 0.8511** on training data and a significantly lower **cross-validated R² of 0.7639**, indicating **strong overfitting**. It performed significantly better on the training set compared to cross-validation results, highlighting its poor generalization ability.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Author
+Simran Nayak
