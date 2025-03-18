@@ -290,9 +290,19 @@ The **Random Forest Regressor** also performed well, with a **training R² of 0.
 
 The **Decision Tree Regressor** had the lowest accuracy, with an **R² of 0.8511** on training data and a significantly lower **cross-validated R² of 0.7639**, indicating **strong overfitting**. It performed significantly better on the training set compared to cross-validation results, highlighting its poor generalization ability.
 
+# Week 5 - Hyperparameter Tuning, Model Evaluation and Model Selection
+## Tasks
 
 
+1. **Hyperparameter Tuning**
+Optimized the hyperparameters for Random Forest, Gradient Boosting, and XGBoost models using RandomizedSearchCV to find the best hyperparameters efficiently.
 
+2. **Model Training and Evaluation**
+**Gradient Boosting & XGBoost** demonstrated the best performance  with a Mean MSE of 0.017 and a Mean R² Score of 0.893.
+Random Forest had slightly worse performance with a higher Mean MSE (0.021) and a lower Mean R² Score (0.871).
+
+3. **Final Model Selection**
+Given their superior performance, either **Gradient Boosting or XGBoost** could be chosen as the final model.
 
 
 
