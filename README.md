@@ -9,7 +9,8 @@ The House Price Prediction System is a comprehensive machine learning project de
 - **Model Optimization**: To fine-tune the selected model using techniques like cross-validation and hyperparameter tuning for improved accuracy.
 ## Data Sources
 The dataset used for this project is derived from the [House Prices - Advanced Regression Techniques](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/overview) competition on Kaggle.
-# Week 1 - Project Setup
+
+# Project Setup
 ## Tasks
 **1. Setting up Git/GitHub**
 - Initialize a Git repository for version control.
@@ -27,7 +28,7 @@ The dataset used for this project is derived from the [House Prices - Advanced R
 - Install and initialize a virtual environment using `pipenv` to manage dependencies effectively.
 - Add essential libraries and packages required for the project.
 
-# Week 2 - Data Understanding and Data Processing
+# Data Understanding and Data Processing
 ## Tasks
 **1. Importing Libraries**
 The first step was to import the essential libraries, such as `pandas`, `numpy`, `seaborn`, `matplotlib` for data analysis and visualization. 
@@ -100,7 +101,7 @@ variables that were highly correlated with others that were more valuable to the
 
 - The **'Id'** column was removed because it was merely an identifier and did not contribute any predictive value for the model.
 
-# Week 3 - Feature Selection and Feature Engineering
+# Feature Selection and Feature Engineering
 ## Tasks
 **1. Additional features were engineered to improve model performance.**
 
@@ -165,7 +166,7 @@ A Random Forest Regressor was trained to determine feature importance, and the t
 
 A Lasso Regression model was applied to shrink less important feature coefficients to zero, effectively selecting the most relevant predictors.
 
-# Week 4 - Supervised Model Building
+# Supervised Model Building
 ## Tasks
 
 **1. Model Training**"
@@ -284,13 +285,13 @@ The models were evaluated using Mean Squared Error (MSE) and R² Score, includin
 
 **Results:**
 
-Among all models, the **Gradient Boosting Regressor** achieved the best performance, with an **R² Score of 0.9887** on the training set and a **cross-validated R² Score of 0.8875**, indicating strong generalization. The **XGBoost Regressor** followed closely, achieving a training **R² of 0.9851** and a **cross-validated R² of 0.8856**, making it another highly effective model.
+- Among all models, the **Gradient Boosting Regressor** achieved the best performance, with an **R² Score of 0.9887** on the training set and a **cross-validated R² Score of 0.8875**, indicating strong generalization. The **XGBoost Regressor** followed closely, achieving a training **R² of 0.9851** and a **cross-validated R² of 0.8856**, making it another highly effective model.
 
-The **Random Forest Regressor** also performed well, with a **training R² of 0.9830** and a **cross-validated R² of 0.8715**, but it showed **slight overfitting**. The **SVM Regressor** achieved a **training R² of 0.9633** and a **cross-validated R² of 0.8311**, performing decently but lagging behind the boosting models.
+- The **Random Forest Regressor** also performed well, with a **training R² of 0.9830** and a **cross-validated R² of 0.8715**, but it showed **slight overfitting**. The **SVM Regressor** achieved a **training R² of 0.9633** and a **cross-validated R² of 0.8311**, performing decently but lagging behind the boosting models.
 
-The **Decision Tree Regressor** had the lowest accuracy, with an **R² of 0.8511** on training data and a significantly lower **cross-validated R² of 0.7639**, indicating **strong overfitting**. It performed significantly better on the training set compared to cross-validation results, highlighting its poor generalization ability.
+- The **Decision Tree Regressor** had the lowest accuracy, with an **R² of 0.8511** on training data and a significantly lower **cross-validated R² of 0.7639**, indicating **strong overfitting**. It performed significantly better on the training set compared to cross-validation results, highlighting its poor generalization ability.
 
-# Week 5 - Hyperparameter Tuning, Model Evaluation and Model Selection
+# Hyperparameter Tuning, Model Evaluation and Model Selection
 ## Tasks
 
 
@@ -298,13 +299,16 @@ The **Decision Tree Regressor** had the lowest accuracy, with an **R² of 0.8511
 Optimized the hyperparameters for Random Forest, Gradient Boosting, and XGBoost models using RandomizedSearchCV to find the best hyperparameters efficiently.
 
 2. **Model Training and Evaluation**
-**Gradient Boosting & XGBoost** demonstrated the best performance  with a Mean MSE of 0.017 and a Mean R² Score of 0.893.
-Random Forest had slightly worse performance with a higher Mean MSE (0.021) and a lower Mean R² Score (0.871).
 
-3. **Final Model Selection**
-Given their superior performance, either **Gradient Boosting or XGBoost** could be chosen as the final model.
+    - **Gradient Boosting & XGBoost** demonstrated the best performance  with a Mean MSE of 0.017 and a Mean R² Score of 0.893.
 
+    - Random Forest had slightly worse performance with a higher Mean MSE (0.021) and a lower Mean R² Score (0.871).
 
+3. **Final Model Selection and Prediction**
+    - Chose Gradient Boosting Regressor as the best-performing model.
+    - Generated predictions using the Gradient Boosting Regressor.
+    - Applied the exponential function (np.exp()) to revert the log transformation and obtain the original scale.
+    - Saved the final predictions to final_predictions.csv.
 
 
 
