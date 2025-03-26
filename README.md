@@ -1,4 +1,8 @@
 # House Price Prediction System
+
+## Dashboard
+![Dashboard](<House Price Dashboard .png>)
+
 ## Project Description
 The House Price Prediction System is a comprehensive machine learning project designed to predict the sale prices of residential properties based on various features. This project aims to leverage historical data to build a predictive model that can assist buyers, sellers, and real estate professionals in making informed decisions regarding property transactions.
 ## Objectives
@@ -105,53 +109,7 @@ variables that were highly correlated with others that were more valuable to the
 ## Tasks
 **1. Additional features were engineered to improve model performance.**
 
-**Total Square Footage Features:**
-    
-    TotalSF = ['TotalBsmtSF'] + ['1stFlrSF'] + ['2ndFlrSF']
-    
-    TotalPorchSF = ['OpenPorchSF'] + ['EnclosedPorch'] + ['3SsnPorch'] + ['ScreenPorch']
-    
-    TotalOutdoorSF = ['OpenPorchSF'] + ['EnclosedPorch'] + ['WoodDeckSF'] + ['3SsnPorch'] + ['ScreenPorch']
-
-**TotalBathrooms:** Total number of bathrooms
-
-    TotalBathrooms = ['FullBath'] + 0.5 * ['HalfBath'] + ['BsmtFullBath'] + 0.5 * ['BsmtHalfBath']
-
-**Garage Features:**
-    
-    GarageSize = ['GarageCars'] * ['GarageArea']
-    
-    GarageAge = ['YrSold'] -['GarageYrBlt']
-
-**Age of the House:**
-    
-    HouseAge = ['YrSold'] - ['YearBuilt']
-    
-    RemodelAge = ['YrSold'] -['YearRemodAdd']
-
-**TotalRooms:** Sum of total rooms above ground and bedrooms.
-    
-    TotalRooms = ['TotRmsAbvGrd'] + ['BedroomAbvGr']
-
-**Basement Presence**
-    
-    HasBasement: Binary flag indicating the presence of a basement
-
-**Garage Presence**
-    
-    HasGarage: Binary flag indicating the presence of a garage
-
-**Pool Presence**
-    
-    HasPool: Binary flag indicating the presence of a pool
-
-**Fireplace Presence**
-    
-    HasFireplace: Binary flag indicating the presence of a fireplace
-
-**2nd Floor Presence**
-    
-    Has2ndfloor: Binary flag indicating the presence of 2nd floor
+Engineered features for house price prediction: Total Square Footage, Total Bathrooms, Garage Size, Garage Age, House Age, and Total Rooms (including Bedrooms).
 
 **2. Feature Scaling and Encoding**
 
@@ -316,6 +274,3 @@ Optimized the hyperparameters for Random Forest, Gradient Boosting, and XGBoost 
 
 
 
-
-### Author
-Simran Nayak

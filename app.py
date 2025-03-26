@@ -14,39 +14,40 @@ def load_model(model_dir: str = "."):
     return joblib.load(model_path)
 
 # Load the data to get actual ranges
-data = pd.read_csv("data/test_df_v1.csv")
+data = pd.read_csv("test_df_top30.csv")
 
 # Default scaled values (unchanged from original)
 default_scaled_values = {
-    'NeighborhoodQuality': -0.17038732930250838,
-    'OverallQual': -0.5,
-    'TotalBsmtSF': -0.20384615384615384,
-    'BsmtFinSF1': 0.15691489361702127,
-    'GarageSize': -0.2689075630252101,
-    'TotalBath': -0.6666666666666666,
+    	'OverallQual': -0.5,	
+    'TotalSF': -0.6559031281533805,
     'CentralAir_Y': 1.0,
-    'OverallCond': 1.0,
-    'LotArea': 0.5387131952017448,
-    '1stFlrSF': -0.35952848722986247,
-    'YearsSinceRemodel': 0.825,
-    'GarageCars': -1.0,
-    'BsmtUnfSF': -0.328719723183391,
-    'Age': 0.3125,
-    'YearRemodAdd': -0.7560975609756098,
-    'YearBuilt': -0.25,
-    'GarageArea': 0.9689922480620154,
-    'MSZoning_RM': 0.0,
     'GrLivArea': -0.8881524440762221,
+    'GarageSize': -0.2689075630252101,
+    'BsmtFinSF1': 0.15691489361702127,
+    'LotArea': 0.5387131952017448,
+    'OverallCond': 1.0,
+    'TotalBathrooms': -0.6666666666666666,
+    'RemodelAge': 0.825,
+    'GarageCars': -1.0,
+    '1stFlrSF':	-0.35952848722986247,
+    'HouseAge':	0.3125,
+    'BsmtUnfSF': -0.3275862068965517,
+    'LotFrontage': 0.55,
+    'GarageArea': 0.9689922480620154,
+    'YearBuilt': -0.25,
+    'YearRemodAdd':	-0.7560975609756098,
+    '2ndFlrSF': 0.0,	
+    'TotalBsmtSF': -0.20384615384615384,
     'TotalOutdoorSF': 0.43317972350230416,
-    'LotFrontage': 0.6111111111111112,
-    '2ndFlrSF': 0.0,
+    'GarageAge': 0.4523809523809524,
+    'GarageYrBlt': -0.40476190476190477,
     'MoSold': 0.0,
-    'GarageFinish_Unf': 1.0,
-    'TotalPorchSF': 0.47794117647058826,
+    'GarageType_Detchd': 0.0,
+    'MSZoning_RM': 0.0,
+    'GarageFinish_Unf':	1.0,
+    'TotalPorchSF':	0.47794117647058826,
     'OpenPorchSF': -0.3888888888888889,
-    'SaleCondition_Normal': 1.0,
-    'GarageYrBlt': -0.41975308641975306,
-    'NeighborhoodQuality': -0.17
+    'Fireplaces': 0.0
 }
 
 # Define actual min-max ranges from the loaded data
