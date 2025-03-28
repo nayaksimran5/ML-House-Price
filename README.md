@@ -73,37 +73,33 @@ A correlation matrix was generated to identify relationships between numerical f
 
 Additionally, I found that **'OverallQual'**, **'GrLivArea'**, and **'TotalBsmtSF'** are strongly correlated with the target variable, **'SalePrice'**. These correlations suggest that these features have a significant relationship with the target, making them potentially important predictors for modeling.
 
-
 **7. Significance Test**
 
 - Conducted ANOVA test to identify statistically significant variables.
 - Retained only the significant features that impact the target variable (SalePrice).
-- Dropped non-significant variables to enhance model performance.
+- Dropped non-significant variables like **'Street', 'LandSlope', 'PoolQC', 'MiscFeature'** to enhance model performance.
 
-**8. Handling Missing Values**
+**8. Removing or Dropping Unnecessary Features and Dropping high percentage of missing value**
+
+In this step, I removed or dropped features that were either unnecessary or did not add significant value to the model.
+
+- The **'MiscVal'** column was dropped as it mostly contained zero values, with only 3 observations having non-zero values. Due to its lack of variability, this column did not provide meaningful information and could potentially introduce noise into the analysis.
+
+- The **'Id'** column was removed because it was merely an identifier and did not contribute any predictive value for the model.
+
+- **'Alley'** and **'Fence'** columns have more than 80% of their data missing so dropped it the training set and test set.
+
+**9. Handling Missing Values**
 I first calculated the percentage of missing values for each feature to understand the extent of the gaps in the data.
 
 - **Numeric Features**: Missing values in numeric columns were filled using KNN imputation, which predicts missing values based on the nearest neighbors in the dataset.
 
 - **Categorical Features**: For categorical columns, missing values were imputed with the mode (the most frequent value) of each column.
 
-- Dropped columns with a high percentage of missing value.
-
-**9. Target Variable Exploration and Transformation**
+**10. Target Variable Exploration and Transformation**
 - The **SalePrice** variable had a right-skewed distribution.
-- Applied a log transformation to normalize the skewness.
+- Applied a **log transformation** to normalize the skewness.
 - The transformation made the target variable more suitable for modeling.
-
-**10. Removing or Dropping Unnecessary Features**
-
-In this step, I removed or dropped features that were either unnecessary or did not add significant value to the model.
-
-- The **'MiscVal'** column was dropped as it mostly contained zero values, with only 3 observations having non-zero values. Due to its lack of variability, this column did not provide meaningful information and could potentially introduce noise into the analysis.
-
-- From the correlation matrix, I identified **'GarageArea', '1stFlrSF', 'TotRmsAbvGrd'**
-variables that were highly correlated with others that were more valuable to the model. Instead of keeping these redundant features, I retained the more relevant variables and dropped the ones that were less useful.
-
-- The **'Id'** column was removed because it was merely an identifier and did not contribute any predictive value for the model.
 
 # Feature Selection and Feature Engineering
 ## Tasks
@@ -113,33 +109,29 @@ Engineered features for house price prediction: Total Square Footage, Total Bath
 
 **2. Feature Scaling and Encoding**
 
-RobustScaler was applied to numerical features to handle outliers
-One-Hot Encoding was applied to categorical features
+**RobustScaler** was applied to numerical features to handle outliers
+**One-Hot Encoding** was applied to categorical features.
 
 **3. Feature Selection Using Random Forest**
 
-A Random Forest Regressor was trained to determine feature importance, and the top features were selected based on their contribution to predicting house prices.
-
-**4. Feature Selection Using Lasso Regression (Optional)**
-
-A Lasso Regression model was applied to shrink less important feature coefficients to zero, effectively selecting the most relevant predictors.
+A Random Forest Regressor was trained to determine feature importance, and the top 30 most important features were selected for predicting house prices.
 
 # Supervised Model Building
 ## Tasks
 
-**1. Model Training**"
+**1. Model Training**
 
 Each model was initialized and trained on the dataset:
 
-A `Random Forest Regressor` was initialized with 500 estimators and trained.
+- A `Random Forest Regressor` was initialized with 500 estimators and trained.
 
-A `Gradient Boosting Regressor` was initialized and trained.
+- A `Gradient Boosting Regressor` was initialized and trained.
 
-A `XGBoost Regressor` was trained on the dataset.
+- A `XGBoost Regressor` was trained on the dataset.
 
-A `Decision Tree Regressor` was trained on the dataset.
+- A `Decision Tree Regressor` was trained on the dataset.
 
-A `SVM Regressor` was trained on the dataset.
+- A `SVM Regressor` was trained on the dataset.
 
 **2. Model Predictions**
 
@@ -165,10 +157,6 @@ The models were evaluated using Mean Squared Error (MSE) and R² Score, includin
 
     R² Score: 0.8715
 
-    MSE for each fold: [0.0183, 0.0243, 0.0206, 0.0165, 0.0227]
-
-    R² for each fold: [0.8775, 0.8654, 0.8770, 0.8858, 0.8518]
-
 **2. Gradient Boosting Regressor**
 
     Training Set Evaluation:
@@ -182,10 +170,6 @@ The models were evaluated using Mean Squared Error (MSE) and R² Score, includin
     Mean MSE: 0.0200
 
     R² Score: 0.8875
-
-    MSE for each fold: [0.0167, 0.0185, 0.0186, 0.0147, 0.0208]
-
-    R² for each fold: [0.8879, 0.8976, 0.8893, 0.8985, 0.8643]
 
 **3. XGBoost Regressor**
 
@@ -201,10 +185,6 @@ The models were evaluated using Mean Squared Error (MSE) and R² Score, includin
 
     R² Score: 0.8856
 
-    MSE for each fold: [0.0153, 0.0210, 0.0187, 0.0136, 0.0227]
-
-    R² for each fold: [0.8974, 0.8840, 0.8888, 0.9063, 0.8515]
-
 **4. Decision Tree Regressor**
 
     Training Set Evaluation:
@@ -218,10 +198,6 @@ The models were evaluated using Mean Squared Error (MSE) and R² Score, includin
     Mean MSE: 0.0375
 
     R² Score: 0.7639
-
-    MSE for each fold: [0.0348, 0.0456, 0.0339, 0.0370, 0.0364]
-
-    R² for each fold: [0.7672, 0.7476, 0.7980, 0.7443, 0.7622]
 
 **5. SVM Regressor**
 
@@ -237,10 +213,6 @@ The models were evaluated using Mean Squared Error (MSE) and R² Score, includin
 
     R² Score: 0.8311
 
-    MSE for each fold: [0.0241, 0.0367, 0.0261, 0.0230, 0.0253]
-
-    R² for each fold: [0.8384, 0.7969, 0.8445, 0.8413, 0.8346]
-
 **Results:**
 
 - Among all models, the **Gradient Boosting Regressor** achieved the best performance, with an **R² Score of 0.9887** on the training set and a **cross-validated R² Score of 0.8875**, indicating strong generalization. The **XGBoost Regressor** followed closely, achieving a training **R² of 0.9851** and a **cross-validated R² of 0.8856**, making it another highly effective model.
@@ -251,7 +223,6 @@ The models were evaluated using Mean Squared Error (MSE) and R² Score, includin
 
 # Hyperparameter Tuning, Model Evaluation and Model Selection
 ## Tasks
-
 
 1. **Hyperparameter Tuning**
 Optimized the hyperparameters for Random Forest, Gradient Boosting, and XGBoost models using RandomizedSearchCV to find the best hyperparameters efficiently.
@@ -268,7 +239,9 @@ Optimized the hyperparameters for Random Forest, Gradient Boosting, and XGBoost 
     - Applied the exponential function (np.exp()) to revert the log transformation and obtain the original scale.
     - Saved the final predictions to final_predictions.csv.
 
+### Kaggle Submission
 
+![Kaggle Score](image.png)
 
 
 
